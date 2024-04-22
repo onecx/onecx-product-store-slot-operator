@@ -1,0 +1,1 @@
+* xref:onecx-product-store-slot-operator:index.adoc[Slot Operator]
