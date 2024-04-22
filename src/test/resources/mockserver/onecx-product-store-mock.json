@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1",
+    "httpRequest": {
+      "method" : "PUT",
+      "path": "/operator/slot/v1/product-test/test-1"
+    },
+    "httpResponse": {
+      "statusCode": 201
+    }
+  },
+  {
+    "id": "2",
+    "httpRequest": {
+      "method" : "PUT",
+      "path": "/operator/slot/v1/product-test-2/test-2"
+    },
+    "httpResponse": {
+      "statusCode": 201
+    }
+  },
+  {
+    "id": "3",
+    "httpRequest": {
+      "method" : "PUT",
+      "path": "/operator/slot/v1/product-test-2/test-3"
+    },
+    "httpResponse": {
+      "statusCode": 200
+    }
+  },
+  {
+    "id": "4",
+    "httpRequest": {
+      "method" : "PUT",
+      "path": "/operator/slot/v1/product-test-2/test-error-1"
+    },
+    "httpResponse": {
+      "statusCode": 500
+    }
+  },
+  {
+    "id": "5",
+    "httpRequest": {
+      "method" : "PUT",
+      "path": "/operator/slot/v1/product-test-2/test-error-2"
+    },
+    "httpResponse": {
+      "statusCode": 400
+    }
+  }
+]
