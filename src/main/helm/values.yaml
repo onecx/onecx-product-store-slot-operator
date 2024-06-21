@@ -15,7 +15,7 @@ app:
         enabled: true
         spec:
           kcConfig:
-            defaultClientScopes: [ ocx:ps-slot:write ]
+            defaultClientScopes: [ ocx-ps-slot:write ]
 
 # Values: JOSDK_WATCH_CURRENT, JOSDK_ALL_NAMESPACES or comma separated list of namespaces
 watchNamespaces: "JOSDK_WATCH_CURRENT"
