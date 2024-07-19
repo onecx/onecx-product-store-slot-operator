@@ -25,7 +25,7 @@ import io.quarkus.test.junit.QuarkusTest;
 @QuarkusTest
 class SlotControllerTest extends AbstractTest {
 
-    final static Logger log = LoggerFactory.getLogger(SlotControllerTest.class);
+    static final Logger log = LoggerFactory.getLogger(SlotControllerTest.class);
 
     @Inject
     Operator operator;
@@ -46,17 +46,14 @@ class SlotControllerTest extends AbstractTest {
 
         operator.start();
 
-        Slot Slot = new Slot();
-        Slot.setMetadata(new ObjectMetaBuilder().withName(name).withNamespace(client.getNamespace()).build());
-        Slot.setSpec(spec);
+        Slot slot = new Slot();
+        slot.setMetadata(new ObjectMetaBuilder().withName(name).withNamespace(client.getNamespace()).build());
+        slot.setSpec(spec);
 
-        log.info("Creating test Slot object: {}", Slot);
-        client.resource(Slot).serverSideApply();
-
-        log.info("Waiting 4 seconds and status muss be still null");
+        client.resource(slot).serverSideApply();
 
         await().pollDelay(2, SECONDS).untilAsserted(() -> {
-            SlotStatus mfeStatus = client.resource(Slot).get().getStatus();
+            SlotStatus mfeStatus = client.resource(slot).get().getStatus();
             assertThat(mfeStatus).isNotNull();
             assertThat(mfeStatus.getStatus()).isNotNull().isEqualTo(status);
         });
@@ -87,17 +84,14 @@ class SlotControllerTest extends AbstractTest {
 
         operator.start();
 
-        Slot Slot = new Slot();
-        Slot.setMetadata(new ObjectMetaBuilder().withName("empty-spec").withNamespace(client.getNamespace()).build());
-        Slot.setSpec(new SlotSpec());
+        Slot slot = new Slot();
+        slot.setMetadata(new ObjectMetaBuilder().withName("empty-spec").withNamespace(client.getNamespace()).build());
+        slot.setSpec(new SlotSpec());
 
-        log.info("Creating test Slot object: {}", Slot);
-        client.resource(Slot).serverSideApply();
-
-        log.info("Waiting 4 seconds and status muss be still null");
+        client.resource(slot).serverSideApply();
 
         await().pollDelay(2, SECONDS).untilAsserted(() -> {
-            SlotStatus mfeStatus = client.resource(Slot).get().getStatus();
+            SlotStatus mfeStatus = client.resource(slot).get().getStatus();
             assertThat(mfeStatus).isNotNull();
             assertThat(mfeStatus.getStatus()).isNotNull().isEqualTo(SlotStatus.Status.ERROR);
         });
@@ -108,17 +102,14 @@ class SlotControllerTest extends AbstractTest {
 
         operator.start();
 
-        Slot Slot = new Slot();
-        Slot.setMetadata(new ObjectMetaBuilder().withName("null-spec").withNamespace(client.getNamespace()).build());
-        Slot.setSpec(null);
+        Slot slot = new Slot();
+        slot.setMetadata(new ObjectMetaBuilder().withName("null-spec").withNamespace(client.getNamespace()).build());
+        slot.setSpec(null);
 
-        log.info("Creating test Slot object: {}", Slot);
-        client.resource(Slot).serverSideApply();
-
-        log.info("Waiting 4 seconds and status muss be still null");
+        client.resource(slot).serverSideApply();
 
         await().pollDelay(4, SECONDS).untilAsserted(() -> {
-            SlotStatus mfeStatus = client.resource(Slot).get().getStatus();
+            SlotStatus mfeStatus = client.resource(slot).get().getStatus();
             assertThat(mfeStatus).isNull();
         });
 
@@ -133,30 +124,27 @@ class SlotControllerTest extends AbstractTest {
         m.setAppId("test-1");
         m.setProductName("product-test");
 
-        Slot Slot = new Slot();
-        Slot
+        Slot slot = new Slot();
+        slot
                 .setMetadata(new ObjectMetaBuilder().withName("to-update-spec").withNamespace(client.getNamespace()).build());
-        Slot.setSpec(m);
+        slot.setSpec(m);
 
-        log.info("Creating test Slot object: {}", Slot);
-        client.resource(Slot).serverSideApply();
-
-        log.info("Waiting 4 seconds and status muss be still null");
+        client.resource(slot).serverSideApply();
 
         await().pollDelay(2, SECONDS).untilAsserted(() -> {
-            SlotStatus mfeStatus = client.resource(Slot).get().getStatus();
+            SlotStatus mfeStatus = client.resource(slot).get().getStatus();
             assertThat(mfeStatus).isNotNull();
             assertThat(mfeStatus.getStatus()).isNotNull().isEqualTo(SlotStatus.Status.CREATED);
         });
 
-        client.resource(Slot).inNamespace(client.getNamespace())
+        client.resource(slot).inNamespace(client.getNamespace())
                 .edit(s -> {
                     s.setSpec(null);
                     return s;
                 });
 
         await().pollDelay(4, SECONDS).untilAsserted(() -> {
-            SlotStatus mfeStatus = client.resource(Slot).get().getStatus();
+            SlotStatus mfeStatus = client.resource(slot).get().getStatus();
             assertThat(mfeStatus).isNotNull();
             assertThat(mfeStatus.getStatus()).isNotNull().isEqualTo(SlotStatus.Status.CREATED);
         });
