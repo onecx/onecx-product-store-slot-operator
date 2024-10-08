@@ -129,6 +129,7 @@ class SlotControllerTest extends AbstractTest {
                 .setMetadata(new ObjectMetaBuilder().withName("to-update-spec").withNamespace(client.getNamespace()).build());
         slot.setSpec(m);
 
+        log.info("Creating test slot object: {}", slot);
         client.resource(slot).serverSideApply();
 
         await().pollDelay(2, SECONDS).untilAsserted(() -> {

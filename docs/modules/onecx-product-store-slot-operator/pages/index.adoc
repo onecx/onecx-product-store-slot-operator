@@ -4,5 +4,7 @@ include::onecx-product-store-slot-operator-attributes.adoc[opts=optional]
 
 include::docs.adoc[opts=optional]
 
+=== Configuration
+include::onecx-product-store-slot-operator.adoc[opts=optional]
 
 include::onecx-product-store-slot-operator-docs.adoc[opts=optional]
