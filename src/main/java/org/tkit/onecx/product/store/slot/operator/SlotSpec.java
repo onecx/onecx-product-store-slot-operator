@@ -18,7 +18,7 @@ public class SlotSpec {
     @JsonProperty("name")
     private String name;
 
-    @JsonProperty(value = "deprecated", defaultValue = "false")
+    @JsonProperty(value = "deprecated")
     private boolean deprecated = false;
 
     public String getAppId() {
