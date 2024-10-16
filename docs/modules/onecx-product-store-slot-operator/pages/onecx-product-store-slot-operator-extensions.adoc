@@ -91,13 +91,13 @@ h| Version
 
 | 
 | 
-| 6.8.3
+| 6.7.3
 
 | quarkus-operator-sdk
 
 | 
 | 
-| 6.8.3
+| 6.7.3
 
 | quarkus-oidc-client
 
